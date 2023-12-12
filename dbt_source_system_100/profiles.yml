@@ -1,12 +1,12 @@
 dbt_source_system_100:
   outputs:
     dev:
-      account: pe15223.southeast-asia.azure
-      database: HDB
+      account: cs55301.southeast-asia.azure
+      database: ALAN
       password: 21J23e91.
       schema: public
       threads: 1
       type: snowflake
-      user: alanzapex
+      user: murderwong
       warehouse: COMPUTE_WH
   target: dev
