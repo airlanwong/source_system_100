@@ -33,5 +33,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_source_system_100:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
       +materialized: view
+
+tests:
+  dbt_source_system_100:
+    staging:
+      +severity: warn
+    marts:
+      +severity: error
