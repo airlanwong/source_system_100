@@ -1,0 +1,39 @@
+version: 2
+
+groups:
+  - name: sales_HDB
+    owner:
+      email: alan.wonghaolin@gmail.com
+models:
+  - name: mas_HDB_property
+    description: HDB data before transfomation
+    config:
+      group: sales_HDB
+    access: private
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "LATITUDE != LONGITUDE"
+
+    columns:
+      - name: LATITUDE
+        description: Lat of HDB
+        tests:
+          - not_null
+          - unique
+
+      # - name: LONGITUDE
+      #   description: lng of HDB
+      #   tests:
+      #     - not_null
+      #     - unique
+      # - name: POSTAL
+      #   description: postal code
+      #   tests:
+      #     - not_null
+      #     - unique
+
+      # - name: ADDRESS
+      #   description: address of HDB
+      #   tests:
+      #     - not_null
+      #     - unique

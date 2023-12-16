@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: PUBLIC
+    database: ALAN
+    tables:
+      - name: int_HDB_property
+        freshness:
+          warn_after: {count: 1, period: day}
+        loaded_at_field: PROCESSED_DATE

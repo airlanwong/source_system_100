@@ -1,0 +1,42 @@
+version: 2
+models:
+  - name: int_HDB_property
+    description: HDB data before transfomation
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "LATITUDE != LONGITUDE"
+    columns:
+      - name: LATITUDE
+        description: Lat of HDB
+        tests:
+          - not_null
+          - unique
+      - name: LONGITUDE
+        description: lng of HDB
+        tests:
+          - not_null
+          - unique
+      - name: POSTAL
+        description: postal code
+        tests:
+          - not_null
+          - unique
+
+      - name: ADDRESS
+        description: address of HDB
+        tests:
+          - not_null
+          - unique
+    latest_version: 2
+    versions:
+      - v: 1
+        columns:
+        - include: all
+          exclude: [DELETE_FLAG]
+
+      - v: 2
+        config:
+          alias: int_HDB_property
+        columns:
+        - include: all
+          exclude: [CREATED_BY]

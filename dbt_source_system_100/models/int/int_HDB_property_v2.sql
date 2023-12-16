@@ -9,15 +9,21 @@
 
 {{ config(materialized='table') }}
 
-with source_data as (
+with int_layer as (
 
-    select *
-	from {{ source("PUBLIC","HDB") }}
+    select *,
+	'Alan' as CREATED_BY,
+	'Alan' as UPDATED_BY,
+	getdate() as PROCESSED_DATE,
+	getdate() as UPDATED_DATE,
+	'HDB_DATA' as SOURCE_DATA,
+	'FALSE' as DELETE_FLAG
+	from {{ref("stg_HDB_property")}}
 
 )
 
 select *
-from source_data
+from int_layer
 
 
 -- where id is not null
